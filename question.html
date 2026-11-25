@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>One Last Question ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="question-page">
+
+    <div class="question-card">
+
+        <div class="heart-icon">💗</div>
+
+        <h1>One Last Question!</h1>
+
+        <h2>Did you like this little surprise? 🥺</h2>
+
+        <p>
+            i mean bhoot hardwork kiya hai manai and thoda sa chatgpt nai,
+            just for you! ❤️
+        </p>
+
+        <div class="choice-area" id="choiceArea">
+
+            <button
+                class="yes-button"
+                onclick="sayYes()">
+                YES ❤️
+            </button>
+
+            <button
+                class="no-button"
+                id="noButton">
+                NO 🙈
+            </button>
+
+        </div>
+
+        <div class="thank-you" id="thankYou">
+
+            <h1>YAYYYYY! 🥹❤️</h1>
+
+            <div class="big-heart">💖</div>
+
+            <h2>Thank You So Much!</h2>
+
+            <p>
+                Your smile is the best reward
+                I could ever ask for.
+
+                I'm so happy that you liked it!
+
+                Keep smiling and stay happy,
+                beautiful. ❤️
+            </p>
+
+            <h2>Lots of love! 💕</h2>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // When YES is clicked
+
+        function sayYes() {
+
+            document.getElementById("thankYou")
+                .style.display = "block";
+
+            document.getElementById("choiceArea")
+                .style.display = "none";
+
+            createHearts();
+        }
+
+
+        // Make the NO button run away
+
+        const noButton =
+            document.getElementById("noButton");
+
+        const choiceArea =
+            document.getElementById("choiceArea");
+
+        function moveNoButton() {
+
+            const area = choiceArea.getBoundingClientRect();
+            const button = noButton.getBoundingClientRect();
+
+            const maxX = area.width - noButton.offsetWidth;
+            const maxY = area.height - noButton.offsetHeight;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noButton.style.left = randomX + "px";
+            noButton.style.top = randomY + "px";
+        }
+
+        noButton.addEventListener(
+            "pointerenter",
+            moveNoButton
+        );
+
+        noButton.addEventListener(
+            "pointerdown",
+            function(event) {
+                event.preventDefault();
+                moveNoButton();
+            }
+        );
+
+
+        // Create floating hearts
+
+        function createHearts() {
+
+            for (let i = 0; i < 35; i++) {
+
+                const heart =
+                    document.createElement("div");
+
+                heart.classList.add("floating-heart");
+
+                heart.innerHTML = "❤️";
+
+                heart.style.left =
+                    Math.random() * 100 + "vw";
+
+                heart.style.animationDelay =
+                    Math.random() * 3 + "s";
+
+                heart.style.fontSize =
+                    (15 + Math.random() * 25) + "px";
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
